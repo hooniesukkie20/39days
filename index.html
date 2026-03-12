@@ -58,7 +58,7 @@
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     text-align: center;
-    padding: 4rem;
+    padding: 2rem;
     position: relative;
   }
 
@@ -149,25 +149,26 @@
     letter-spacing: 0.05em;
   }
 
-  .facts-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 0.75rem;
-    justify-content: center;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-  }
-  .fact-chip {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.2rem 1rem;
-    text-align: center;
-    transition: transform 0.25s;
-    backdrop-filter: blur(6px);
-    flex: 0 0 auto;
-    min-width: 100px;
-  }
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* three equal columns */
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 600px;          /* optional: limit overall width */
+  margin: 0 auto;            /* center the grid horizontally */
+}
+
+.fact-chip {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.2rem 0.5rem;    /* adjust horizontal padding if needed */
+  text-align: center;
+  transition: transform 0.25s;
+  backdrop-filter: blur(6px);
+  /* remove flex properties */
+}
   .fact-chip:hover { transform: scale(1.05); }
   .fact-chip .number {
     font-family: 'Playfair Display', serif;
@@ -793,6 +794,7 @@ function copyLink(){
 </body>
 
 </html>
+
 
 
 
