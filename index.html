@@ -579,7 +579,7 @@
     <div class="leg-item"><div class="leg-dot empty"></div> empty</div>
   </div>
 
-  <p style="font-size:0.78rem;color:rgba(253,246,238,0.4);margin-bottom:1.2rem;">click any day to add or edit your fic details ✦ saves automatically</p>
+  <p style="font-size:0.78rem;color:rgba(253,246,238,0.4);margin-bottom:1.2rem;">click a posted day to read the fic ✦ updated by hoonie_sukkie</p>
 
   <div class="days-grid" id="days-grid"></div>
 </section>
@@ -603,31 +603,6 @@
 </footer>
 
 </div><!-- /page -->
-
-<!-- ══ MODAL ══ -->
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <button class="btn-close" onclick="closeModal()">✕</button>
-    <h3 id="modal-title">Day 1 — 14 March</h3>
-    <label>fic title</label>
-    <input type="text" id="m-title" placeholder="untitled...">
-    <label>fic link (ao3)</label>
-    <input type="text" id="m-link" placeholder="https://...">
-    <label>status</label>
-    <select id="m-status">
-      <option value="empty">— empty —</option>
-      <option value="idea">💡 idea</option>
-      <option value="drafted">✍️ drafted</option>
-      <option value="posted">✅ posted</option>
-    </select>
-    <label>notes / summary</label>
-    <textarea id="m-notes" rows="3" placeholder="quick notes..."></textarea>
-    <div class="modal-btns">
-      <button class="btn btn-cancel" onclick="closeModal()">cancel</button>
-      <button class="btn btn-save" onclick="saveDay()">save ✦</button>
-    </div>
-  </div>
-</div>
 
 <script>
 // ── STARFIELD ──
@@ -749,10 +724,13 @@ updateCountdown();
 
 // ── FIC TRACKER ──
 const START = new Date('2026-03-14');
-let ficData = {};
-try { ficData = JSON.parse(localStorage.getItem('39days_fics') || '{}'); } catch(e){}
 
-function saveData(){ localStorage.setItem('39days_fics', JSON.stringify(ficData)); }
+// ✏️ AUTHOR: edit your fic data here directly
+const ficData = {
+  // day1: { title: 'your title', link: 'https://archiveofourown.org/works/...', status: 'posted', notes: 'summary' },
+  // day2: { title: '', link: '', status: 'drafted', notes: '' },
+  // status options: 'empty' | 'idea' | 'drafted' | 'posted'
+};
 
 function getDateForDay(n){
   const d = new Date(START);
@@ -780,46 +758,18 @@ function buildGrid(){
       <span class="status-badge">${fic.status}</span>
       ${fic.title ? `<span class="day-title-preview">${fic.title}</span>` : ''}
     `;
-    card.addEventListener('click', ()=>openModal(i));
-    grid.appendChild(card);
+    if(fic.status==='posted' && fic.link){
+  card.style.cursor='pointer';
+  card.addEventListener('click', ()=> window.open(fic.link,'_blank'));
+} else {
+  card.style.cursor='default';
+}
+grid.appendChild(card);
   }
   document.getElementById('posted-count').textContent = posted;
   document.getElementById('drafted-count').textContent = drafted;
   document.getElementById('idea-count').textContent = idea;
 }
-
-let currentDay = null;
-function openModal(n){
-  currentDay = n;
-  const key = 'day'+n;
-  const fic = ficData[key] || { title:'', link:'', status:'empty', notes:'' };
-  document.getElementById('modal-title').textContent = `Day ${n} — ${getDateForDay(n)}`;
-  document.getElementById('m-title').value  = fic.title  || '';
-  document.getElementById('m-link').value   = fic.link   || '';
-  document.getElementById('m-status').value = fic.status || 'empty';
-  document.getElementById('m-notes').value  = fic.notes  || '';
-  document.getElementById('modal-overlay').classList.add('open');
-}
-function closeModal(){
-  document.getElementById('modal-overlay').classList.remove('open');
-  currentDay = null;
-}
-function saveDay(){
-  if(!currentDay) return;
-  const key = 'day'+currentDay;
-  ficData[key] = {
-    title:  document.getElementById('m-title').value.trim(),
-    link:   document.getElementById('m-link').value.trim(),
-    status: document.getElementById('m-status').value,
-    notes:  document.getElementById('m-notes').value.trim()
-  };
-  saveData();
-  buildGrid();
-  closeModal();
-}
-document.getElementById('modal-overlay').addEventListener('click', e=>{
-  if(e.target === document.getElementById('modal-overlay')) closeModal();
-});
 
 buildGrid();
 
@@ -842,6 +792,7 @@ function copyLink(){
 </body>
 
 </html>
+
 
 
 
