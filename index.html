@@ -725,7 +725,7 @@ const START = new Date('2026-03-14');
 
 // ✏️ AUTHOR: edit your fic data here directly
 const ficData = {
-  day1: { title: 'your title', link: 'https://archiveofourown.org/works/80792716', status: 'posted', notes: 'dragon au (ji bday!)' },
+  day1: { title: 'gold', link: 'https://archiveofourown.org/works/80792716', status: 'posted', notes: 'dragon au (ji bday!)' },
   // day2: { title: '', link: '', status: 'drafted', notes: '' },
   // status options: 'empty' | 'idea' | 'drafted' | 'posted'
 };
@@ -751,11 +751,12 @@ function buildGrid(){
     card.className = `day-card status-${fic.status}`;
     card.dataset.day = i;
     card.innerHTML = `
-      <span class="day-num">Day ${i}</span>
-      <span class="day-date">${getDateForDay(i)}</span>
-      <span class="status-badge">${fic.status}</span>
-      ${fic.title ? `<span class="day-title-preview">${fic.title}</span>` : ''}
-    `;
+  <span class="day-num">Day ${i}</span>
+  <span class="day-date">${getDateForDay(i)}</span>
+  <span class="status-badge">${fic.status}</span>
+  ${fic.title ? `<span class="day-title-preview">${fic.title}</span>` : ''}
+  ${fic.notes ? `<span class="day-title-preview" style="font-size:0.7rem;opacity:0.7;font-style:italic;">${fic.notes}</span>` : ''}
+`;
     if(fic.status==='posted' && fic.link){
   card.style.cursor='pointer';
   card.addEventListener('click', ()=> window.open(fic.link,'_blank'));
@@ -790,6 +791,7 @@ function copyLink(){
 </body>
 
 </html>
+
 
 
 
