@@ -588,7 +588,7 @@
 <section class="share-section">
   <h2 class="section-title">✦ share this page ✦</h2>
   <div class="share-box">
-    <p style="font-size:0.8rem;opacity:0.6;margin-bottom:0.5rem;">copy the link and share with anyone — no login needed </p>
+    <p style="font-size:0.8rem;opacity:0.6;margin-bottom:0.5rem;"> site link (read tags carefully & happy reading<3)</p>
     <div class="share-url" id="share-url">loading...</div>
     <div class="share-btns">
       <button class="share-btn" onclick="copyLink()">📋 copy link</button>
@@ -611,7 +611,7 @@
     <h3 id="modal-title">Day 1 — 14 March</h3>
     <label>fic title</label>
     <input type="text" id="m-title" placeholder="untitled...">
-    <label>fic link (ao3/wattpad)</label>
+    <label>fic link (ao3)</label>
     <input type="text" id="m-link" placeholder="https://...">
     <label>status</label>
     <select id="m-status">
@@ -829,7 +829,7 @@ document.getElementById('share-url').textContent = pageURL;
 document.getElementById('share-twitter').href =
   `https://twitter.com/intent/tweet?text=${encodeURIComponent('✦ 39 days of jihoon × hyunsuk fics by hoonie_sukkie — starting on jihoon\'s bday, ending on hyunsuk\'s ❤️💜')}&url=${encodeURIComponent(pageURL)}`;
 document.getElementById('share-tumblr').href =
-  `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${encodeURIComponent(pageURL)}&title=${encodeURIComponent('39 Days — a fic collection by Hoonie_Sukkie')}`;
+  `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${encodeURIComponent(pageURL)}&title=${encodeURIComponent('39 Days — a fic 🔞 collection by Hoonie_Sukkie')}`;
 
 function copyLink(){
   navigator.clipboard.writeText(pageURL).then(()=>{
@@ -840,4 +840,5 @@ function copyLink(){
 }
 </script>
 </body>
+
 </html>
