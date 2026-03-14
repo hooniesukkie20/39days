@@ -547,7 +547,7 @@
 
 <!-- ══ COUNTDOWN ══ -->
 <section class="countdown-wrap">
-  <h2 class="section-title">✦ live countdown ✦</h2>
+  <h2 class="section-title">✦ live countdown (kst) ✦</h2>
   <div class="countdown-dates">
     <div class="cdate jihoon">jihoon's birthday<span>14 March 2026</span></div>
     <span class="cdate-sep">→</span>
@@ -574,7 +574,7 @@
 
 <!-- ══ LINKS ══ -->
 <section class="links-section">
-  <h2 class="section-title">✦ vibes & inspo ✦</h2>
+  <h2 class="section-title">✦ tunes & inspo ✦</h2>
   <div class="links-grid">
     <a class="link-card pinterest" href="https://pin.it/68qKG1ymu" target="_blank">
       <span class="link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="#E60023">
@@ -711,8 +711,8 @@ document.addEventListener('click', e=>{
 // ── COUNTDOWN ──
 function updateCountdown(){
   const now   = new Date();
-  const start = new Date('2026-03-14T00:00:00');
-  const end   = new Date('2026-04-21T23:59:59');
+  const start = new Date(Date.UTC(2026, 2, 14, 0, 0, 0));  // March is month 2 (0-indexed)
+  const end = new Date(Date.UTC(2026, 3, 21, 23, 59, 59)); // April is month 3
 
   const status  = document.getElementById('cd-status');
   const fill    = document.getElementById('prog-fill');
