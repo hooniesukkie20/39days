@@ -711,8 +711,8 @@ document.addEventListener('click', e=>{
 // ── COUNTDOWN ──
 function updateCountdown(){
   const now   = new Date();
-  const start = new Date(Date.UTC(2026, 2, 14, 0, 0, 0));  // March is month 2 (0-indexed)
-  const end = new Date(Date.UTC(2026, 3, 21, 23, 59, 59)); // April is month 3
+  const start = new Date('2026-03-14T00:00:00');
+  const end = new Date('2026-04-21T23:59:59');
 
   const status  = document.getElementById('cd-status');
   const fill    = document.getElementById('prog-fill');
